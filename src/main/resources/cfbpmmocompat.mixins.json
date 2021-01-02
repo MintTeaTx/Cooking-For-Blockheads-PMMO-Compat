@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "com.minttea.cfbpmmocompat.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "cfbpmmocompat.refmap.json",
+  "mixins": [
+    "OvenTileEntityMixin"
+  ],
+  "minVersion": "0.8"
+}
