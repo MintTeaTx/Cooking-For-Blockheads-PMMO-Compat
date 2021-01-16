@@ -4,6 +4,7 @@ import harmonised.pmmo.config.JType;
 import harmonised.pmmo.events.ChunkDataHandler;
 import harmonised.pmmo.skills.Skill;
 import harmonised.pmmo.util.XP;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,11 +21,13 @@ public class OvenHandler {
     {
         UUID uuid = ChunkDataHandler.checkPos(world, pos);
         LOGGER.debug("Got UUID, " + uuid);
-        if(uuid != null)
+        if(uuid != null && !world.isRemote)
         {
+            ServerPlayerEntity player = XP.getPlayerByUUID(uuid);
             Double award = XP.getXp(input.getItem().getRegistryName(), JType.XP_VALUE_COOK).get("cooking");
             String source = "Cooking " + input.getItem().getRegistryName();
-            Skill.COOKING.addXp(uuid, award, source, true, false);
+            XP.awardXp(player, "cooking", null, award, false, false, false);
+
         }
     }
 }
