@@ -24,7 +24,7 @@ public class OvenHandler {
         LOGGER.debug("Got UUID, " + uuid);
         if(uuid != null && !world.isRemote)
         {
-            Double award = APIUtils.getXp(input, JType.XP_VALUE_COOK).getOrDefault("cooking", 0);
+            Double award = APIUtils.getXp(input, JType.XP_VALUE_COOK).getOrDefault("cooking", 0d);
             String source = "Cooking " + input.getItem().getRegistryName();
             APIUtils.addXp("cooking", uuid, award, source, false, false);
         }
